@@ -28,7 +28,24 @@ client.once(Events.ClientReady, () => {
 client.on(Events.InteractionCreate, async interaction => {
 
     if (interaction.isChatInputCommand()) {
+if (interaction.commandName === '종료') {
 
+    const latestEventId = [...events.keys()].pop();
+
+    if (!latestEventId) {
+        return interaction.reply({
+            content: '진행 중인 이벤트가 없습니다.',
+            ephemeral: true
+        });
+    }
+
+    events.delete(latestEventId);
+
+    return interaction.reply({
+        content: '✅ 최근 이벤트를 강제 종료했습니다.',
+        ephemeral: true
+    });
+}
         if (interaction.commandName === '룰렛') {
 
             const time = interaction.options.getString('시간');
