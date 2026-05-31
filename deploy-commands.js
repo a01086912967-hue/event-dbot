@@ -24,6 +24,10 @@ const commands = [
             option.setName('뽑기')
                 .setDescription('뽑기를 진행합니다. (관리자 전용)')
                 .setRequired(false))
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
+    new SlashCommandBuilder()
+        .setName('종료')
+        .setDescription('가장 최근 이벤트를 강제 종료합니다.')
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 ].map(command => command.toJSON());
 
