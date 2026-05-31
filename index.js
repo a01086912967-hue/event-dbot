@@ -148,7 +148,7 @@ ${winnerList}
     }
 
     if (interaction.isButton()) {
-
+await interaction.deferUpdate();
         if (!interaction.customId.startsWith('join_')) return;
 
         const eventId = interaction.customId.split('_')[1];
