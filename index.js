@@ -30,19 +30,19 @@ client.on(Events.InteractionCreate, async interaction => {
     if (interaction.isChatInputCommand()) {
 if (interaction.commandName === '종료') {
 
-    const latestEventId = [...events.keys()].pop();
+    const lastEventId = Array.from(events.keys()).pop();
 
-    if (!latestEventId) {
+    if (!lastEventId) {
         return interaction.reply({
             content: '진행 중인 이벤트가 없습니다.',
             ephemeral: true
         });
     }
 
-    events.delete(latestEventId);
+    events.delete(lastEventId);
 
     return interaction.reply({
-        content: '✅ 최근 이벤트를 강제 종료했습니다.',
+        content: '✅ 가장 최근 이벤트를 강제 종료했습니다.',
         ephemeral: true
     });
 }
@@ -88,7 +88,7 @@ ${role}`
                         .setStyle(ButtonStyle.Success)
                 );
 
-            await interaction.followUp({
+            await interaction.reply({
     content: '✨ 이벤트 생성 완료!',
     ephemeral: true
 });
@@ -219,7 +219,7 @@ await interaction.message.edit({
     embeds: [newEmbed]
 });
 
-interaction.followUp({
+interaction.reply({
     content: '🎉 참가 완료!',
     ephemeral: true
 });
