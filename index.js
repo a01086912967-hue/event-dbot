@@ -71,7 +71,7 @@ ${role}`
                         .setStyle(ButtonStyle.Success)
                 );
 
-            await interaction.reply({
+            await interaction.followUp({
     content: '✨ 이벤트 생성 완료!',
     ephemeral: true
 });
@@ -156,7 +156,7 @@ await interaction.deferUpdate();
         const data = events.get(eventId);
 
         if (!data) {
-            return interaction.reply({
+            return interaction.followUp({
                 content: '이미 종료된 이벤트입니다.',
                 ephemeral: true
             });
@@ -167,14 +167,14 @@ await interaction.deferUpdate();
         );
 
         if (!member.roles.cache.has(data.roleId)) {
-            return interaction.reply({
+            return interaction.followUp({
                 content: '역할이 없어, 이벤트 참가가 불가능합니다! ❌',
                 ephemeral: true
             });
         }
 
         if (data.participants.includes(interaction.user.id)) {
-            return interaction.reply({
+            return interaction.followUp({
                 content: '이미 참가했습니다!',
                 ephemeral: true
             });
@@ -202,7 +202,7 @@ await interaction.message.edit({
     embeds: [newEmbed]
 });
 
-interaction.reply({
+interaction.followUp({
     content: '🎉 참가 완료!',
     ephemeral: true
 });
